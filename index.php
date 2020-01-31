@@ -14,7 +14,6 @@
 	<meta charset="utf-8">
 	
 	<meta http-equiv="Content-Type" content="text/html">
-	<title>Blog-Style Lightbox Gallery - Design Shack Demo</title>
 	<meta name="author" content="Jake Rocheleau">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css">
