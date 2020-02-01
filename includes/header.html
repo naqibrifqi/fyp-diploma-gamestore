@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<style type="text/css" media="all">@import "./includes/style.css";</style>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- <script type="text/javascript">
+			$('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
+		</script> -->
+	</head>
+	
+	<body>
+		<!--This is the logo of the company. -->
+		<div id="head">
+			<div class="wrapper_table_header"><table>
+				<tr>
+					<td>
+							<a href="index.html"><img src="./includes/kitamenlogos.png" alt="kitamen logo"></a>
+					</td>
+					
+					<td width="100%">
+						<p><font color="white">Welcome to KITAMEN Entertainment</font>
+						<?php 
+						if(isset($_SESSION['member_id'])) {
+							echo '<div class="headlink">&nbsp &nbsp <font color="white>"Logged in as </font><a href="myaccount_edit.php" style="text-decoration:none;">' . ucfirst($_SESSION['member_id']) . '</a>'; 
+							echo ' * <a href="logout.php" style="text-decoration:none;" onclick="return confirm(\'Are you sure you want to Logout?\');">Log Out</a></p></div>';
+						}else{
+							echo '<br><div class ="headlink"><a href="login.php">Sign in</a> or <a href="register.php">Create an Account</div></a>';
+						}
+						?>
+						</p>
+						<form action="search.php" method="post" id="searchform">
+							<input type="text" name="search" style="background-image: url(images/search.png); background-size: 45px 45px; background-position: right center; background-repeat: no-repeat; padding-right:16px;" placeholder="search all products" class="form-control input-lg" />
+							<input type="hidden" name="searched" value="TRUE" />
+						</form>
+					</td>
+				</tr>
+			</table></div>
+			<br /><br />
+			<!--This is the menu navigation bar of the website -->
+			<div class="nav_bar">
+			<div class="wrapper"><ul>
+				<li class="dropdown">
+					<a href="home.php" title="home">KITAMEN</a>
+					<div class="dropdown-content">
+						<a href="home.php">ARTICLE</a>
+						<a href="rentaltnc.php">RENTAL TnC</a>
+					</div>
+				</li>
+				
+				<li class="dropdown">
+					<a href="service.php" title="service">SERVICES & PRODUCTS</a>
+					<div class="dropdown-content">
+						<a href="gamingstud.php">GAMING STUDIO</a>
+						<a href="rental_solution.php">RENTAL SOLUTIONS</a>
+						<a href="product_catalogue.php">PRE-ORDER GAMES</a>
+						<a href="instock.php">IN STOCK GAMES</a>
+					</div>
+				</li>
+					
+				<li class="dropdown">
+					<a href="#" title="contact">CONTACT US</a>
+					<div class="dropdown-content">
+						<a href="contact.php">OUTLETS</a>
+					</div>
+				</li>
+				
+				<?php
+					
+					if(isset($_SESSION['member_id']) && $_SESSION['member_id'] != "") {
+						?><li><a href='logout.php'  onclick="return confirm('Are you sure you want to Logout?');">LOGOUT <?php echo $_SESSION['member_id']; ?></a></li>
+						<?php
+					} else {
+						echo("<li><a href='login.php'>LOGIN</a></li>");
+						echo("<li><a href='register.php'>REGISTER</a></li>");
+					}
+					
+					if(isset($_SESSION['member_id']) && $_SESSION['member_id'] != "") {
+						echo "<li><a href='myaccount.php'>MY CART</a></li>";
+						echo "<li><a href='myaccount_edit.php' title='myaccountedit'>MY ACCOUNT</a></li>";
+					}
+				?>
+			</ul></div></div>
+		</div>
+		<!-- <a href="#" class="back-to-top">Back to Top</a> -->
+		<button class="top-button" title="Go To Top">Top</button>
+			<!-- <script type="text/javascript">
+			var amountScrolled = 300;
+
+			$(window).scroll(function() {
+				if ( $(window).scrollTop() > amountScrolled ) {
+					$('a.back-to-top').fadeIn('slow');
+				} else {
+					$('a.back-to-top').fadeOut('slow');
+				}
+			});
+			
+			$('a.back-to-top').click(function() {
+				$('html, body').animate({
+					scrollTop: 0
+				}, 700);
+				return false;
+			});
+		</script> -->
+		<script src=".\js\sandbox.js"></script>
+	</body>
+</html>

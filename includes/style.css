@@ -1,0 +1,636 @@
+/* tr.table-alpha-header{
+    border-bottom: 1pt solid black;
+    height: 10px;
+}
+
+table-alpha-header th{
+    color: #ed1d70;
+} */
+
+.admin-body{
+    background-color: #f5f5f5;
+}
+
+table.table-alpha{
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+body > div > div:nth-child(15) > form > table > tbody > tr.table-alpha-header{
+    color: grey;
+    border-bottom: 1pt solid #444;
+}
+
+.table-alpha-header th{
+    padding: 10px;
+}
+
+
+.top-button {
+	display: none;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+	background: #27AE61 url("up-arrow.png") no-repeat center 43%;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+/* .top-button:hover{
+	background-color:#000;
+} */
+
+.dashboard-table{
+	border-collapse:collapse;
+}
+
+.dashboard-table th{
+	padding:10px;
+}
+
+.dashboard-table td{
+	padding:10px;
+}
+
+.service-table{
+	border-collapse:collapse;
+}
+
+.service-table th{
+	padding:10px;
+}
+
+.service-table td:hover {
+	background-color: #fb78ac
+}
+
+.service-table td{
+	padding:10px;
+}
+
+.cart-table td{
+	padding:30px;
+}
+
+.headlink a{
+	color: white;
+	text-decoration: none;
+}
+
+.headlink a:hover{
+	color: blue;
+	text-decoration: none;
+}
+
+.div-login{
+	width: 50%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #73716E;
+    padding: 12px;
+}
+
+#head{
+	padding-top:30px;
+    background-color:#ed1d70;
+    width: 100%;
+    max-width: 100%;
+}
+
+.headerlogin{
+	text-align: center;
+}
+
+.headerlogin p {
+    color: #ffffff;
+}
+
+.first_p {
+    padding-top: 25px;
+    font-size: 25pt;
+}
+
+.last_p {
+    font-size: 12pt;
+    margin-top: -20px;
+    padding-bottom: 10px;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+.form-login {
+    max-width: 700px;
+    min-width: 300px;
+    padding: 30px 40px 30px 40px;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.has-feedback {
+    margin-bottom: 22px;
+}
+
+.has-feedback {
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.has-feedback .form-control {
+    padding-right: 42.5px;
+}
+.form-group input {
+    font-family: Ubuntu;
+}
+.form-control {
+    border-radius: 0;
+    border-left: 6px solid #73716E;
+    border-right: 1px solid #73716E;
+    border-top: 1px solid #73716E;
+    border-bottom: 1px solid #73716E;
+    height: 60px;
+}
+
+.input-lg, .form-horizontal .form-group-lg .form-control {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+@media (min-width: 992px)
+.col-md-6 {
+    width: 50%;
+}
+
+@media (min-width: 992px)
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+}
+
+.radio, .checkbox {
+    position: relative;
+    display: block;
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+element.style {
+    position: relative;
+}
+.icheckbox_square-grey {
+    background-position: 0 0;
+}
+.icheckbox_square-grey, .iradio_square-grey {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    background: url(grey.png) no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+element.style {
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    display: block;
+    width: 140%;
+    height: 140%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    opacity: 0;
+    background: rgb(255, 255, 255);
+}
+
+.checkbox label {
+    padding-left: 10px;
+    color: #73716E;
+    font-size: 15px;
+}
+
+.radio label, .checkbox label {
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.stronghold-btn-default {
+    background-color: #73716E;
+    border-radius: 0;
+    color: #ffffff;
+    border: 2px solid #585653;
+    min-width: 117px;
+    height: 44px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.service-table table{ 
+	border-radius: 25px; 
+	font-family: Arial;
+	font-weight: bold;
+}
+
+.service-table a{ text-decoration:none; }
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+#body{
+	font-family: "Verdana" , serif;
+	text-align: center;
+}
+
+body{
+	font-family: "Verdana" , serif;
+	/* background-image:url("http://kaba35.com/wp-content/uploads/2015/11/Savin-NY-Website-Background-Web.jpg"); */
+	/*background-image:url("http://zellox.com/wp-content/uploads/2016/02/background-image-for-website.jpg");*/
+	
+	background-size: 100% 100%;
+}
+
+.btnlink{
+	background:none!important;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    /*border is optional*/
+    border-bottom:1px solid #444; 
+    cursor: pointer;
+	text-decoration: none;
+}
+
+.logo{
+	width: 60%;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.nav{
+	width: 60%;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#head ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: black;
+}
+
+#head li{
+	float: left;
+}
+
+#head li a, .dropbtn {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	background-color: black;
+	font-family: "Verdana", serif;
+}
+
+#head li a:hover, .dropdown:hover .dropbtn{
+    background-color: #ed1d70;
+}
+
+.nav_bar{
+	background-color:black;
+    text-align:center;
+}
+
+.article_holder td{
+	padding: 15px;
+}
+
+.wrapper{
+	max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 15px;
+	font-family: 'Roboto', sans-serif;
+	text-align: justify;
+}
+
+.wrapper a{
+	text-decoration: none;
+}
+
+.wrapper_product{
+	max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+	text-align:left;
+}
+
+.wrapper_right{
+	width: 40%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 250px;
+}
+
+.wrapper_left{
+	width: 40%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 250px;
+}
+
+.wrapper_table_header{
+	max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 15px;
+	font-family: 'Roboto', sans-serif;
+	text-align:justify;
+}
+
+.wrapper_table_header td{
+	text-align:right;
+}
+
+.nav{
+	float: left;
+	font-size: x-small;
+}
+
+.nav a{
+	text-decoration: none;
+}
+
+#body h1{
+	font-family: Verdana;
+}
+
+.cart-button{
+	padding: 1em 2em;
+	background-color: #ed1d70;
+    color: white;
+	border: none;
+}
+
+.cart-button:hover{
+	background-color: black;
+    border: none;
+    color: white;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+img, span{
+	vertical-align:middle;
+}
+
+.button{
+	background-color: #ed1d70;
+	font-family:"Dosis","HelveticaNeue","Helvetica Neue",sans-serif;
+    border: none;
+    color: white;
+	text-decoration: none;
+    cursor: pointer;
+	width: 200px;
+	height: 50px;
+	padding: 0px;
+}
+
+.button:hover{
+	background-color: black;
+    border: none;
+    color: white;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+.button:active{
+	background-color: white;
+    border: none;
+    color: orange;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+#cart button {
+    background-color: orange;
+    border: none;
+    color: white;
+	text-decoration: none;
+    cursor: pointer;
+	width: 150px;
+	height: 70px;
+	vertical-align: middle;
+}
+
+#cart button:hover {
+    background-color: black;
+    border: none;
+    color: white;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+#cart button:active {
+    background-color: white;
+    border: none;
+    color: orange;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+#cart{
+	width: 80%;
+	margin:0 auto;
+	text-align:left;
+}
+
+#checkout a {
+    background-color: orange;
+    border: solid 2px;
+	border-color: black;
+    color: black;
+	text-decoration: none;
+    cursor: pointer;
+	width: 150px;
+	height: 50px;
+	padding: 14px 25px;
+}
+
+#checkout a:hover {
+    background-color: black;
+    border: solid 2px;
+	border-color: orange;
+    color: white;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+#checkout a:active {
+    background-color: white;
+    border: none;
+    color: orange;
+	text-decoration: none;
+    cursor: pointer;
+}
+
+li.dropdown{
+	display: inline-block;
+}
+
+.dropdown-content{
+	display: none;
+	position: absolute;
+	background-color: #ed1d70;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0,2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+#social li{
+	float: right;
+}
+
+#social ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+/*#footer {
+	background:black;
+	color:white;
+	width:100%;
+	height:30px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}*/
+
+#footer {
+	background:black;
+	border:black solid 4px;
+	color:white;
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 300px;
+    margin-top: -3em;
+	float:bottom;
+	opacity: 0.8;
+}
+
+#footer, .push {
+    height: 300px; /* .push must be the same height as .footer */
+}
+
+#footer a{
+	text-decoration: none;
+	color:ed1d70;
+}
+
+#footer a:hover{
+	text-decoration: none;
+	color:grey;
+}
+
+.linkbtn:link, .linkbtn:visited{
+	background-color: #ed1d70;
+    color: white;
+    padding: 14px 25px;
+    text-align: center; 
+    text-decoration: none;
+}
+
+.linkbtn:hover, .linkbtn:active{
+	background-color:white;
+	color:#ed1d70;
+	border: solid 1px;
+	border-color: #ed1d70;
+}
+
+.address_reg{
+	width: 100%;
+	height: 300px;
+}
+
+hr {
+    clear: both;
+    border-top: solid #ececec;
+    border-width: 1px 0 0;
+    margin: 30px 0;
+    height: 0;
+}
