@@ -12,13 +12,17 @@
 	</head>
 	
 	<body class="admin-body">
+		<?php
+			include('./includes/admin-sidebar.html');
+		?>
 		<div class="wrapper">
 		<?php
-			require_once('./config/mysql_connect.php');
 			include('./includes/admin_header.html');
-			
+			require_once('./config/mysql_connect.php');
+
 			if(isset($_POST['submitted'])) {
 				
+
 				$errors = array();
 				
 				if(!empty($_POST['prod_id'])) {
@@ -105,18 +109,15 @@
 				}
 			
 				if(empty($errors)) {
-					
-					require_once('./config/mysql_connect.php');
-					
+
 					$query = "INSERT INTO products(prod_id, prod_name, prod_type, prod_price, date_added, prod_img, prod_avail, prod_desc, stock)
 					 VALUES('$pid', '$pn', '$pt', '$pp', NOW(), '$target', '$pa', '$pd', '$s')";
-					 $result = @mysqli_query($dbc, $query);
+					 $result = mysqli_query($dbc, $query);
 					 if ($result) {
 						 
 						//	Print a message.
 						echo '<h1 id="mainhead">Product Cataloging Complete</h1>
 						<p>The Product has been added</p>';
-						echo '<br><div class="wrapper">Rental order accepted. We will confirm your order shortly.</div>';
 						echo '<br><div class="wrapper"><p><a href="home.php">Click here</a> to return home</p><p><a href="rental_solution.php">Click here</a> to return to rental</p></div>';
 						echo '
 						<div class="wrapper_product">
@@ -151,6 +152,7 @@
 							</table>
 						</form></div>';
 						
+						mysqli_close($dbc);
 						exit();
 						
 					} else {	// If it did not run OK.
@@ -236,10 +238,10 @@
 							<th>Detail</th>
 							<th>Price</th>
 							<th>Stock</th>
-							<th></th>
+							<th>Update</th>
 						</tr>
 						<?php
-							$sql = "SELECT prod_id, prod_name, prod_desc, prod_price, prod_type,stock FROM products ORDER BY prod_type";
+							$sql = "SELECT prod_id, prod_name, prod_desc, prod_price, prod_type,stock FROM products ORDER BY prod_id ASC";
 							$resultsql = mysqli_query($dbc, $sql);
 							
 							if($resultsql){
@@ -250,11 +252,12 @@
 									echo '<td>' . substr($row['prod_desc'], 0, 150) . '...</td>';
 									echo '<td>RM ' . number_format($row['prod_price'], 2) . '</td>';
 									echo '<td>' . $row['stock'] . '</td>';
-									echo '<td><a href="product_edit.php?prod_id=' . $row['prod_id'] . '" style="text-decoration:none;">...</a></td>';
+									echo '<td><a href="product_edit.php?prod_id=' . $row['prod_id'] . '" style="text-decoration:none; color: blue; font-weight:bold; font-size:20px;">...</a></td>';
 								}
 								
 								echo '</table><br /><br />';
 							}
+							mysqli_close($dbc);
 						?>
 				</form>
 			</div>

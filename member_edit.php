@@ -175,22 +175,22 @@
 							while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 								
 								echo '<tr><td>ID</td><td><input type="text" size="50" name="member_id" value="' . $row['member_id'] .'" readonly/></td>';
-								echo '<td>Address</td><td><input type="text" size="50" name="address" value="' . $row['address'] .'"/></td></tr>';
+								echo '<td>Address</td><td><input type="text" size="35" name="address" value="' . $row['address'] .'"/></td></tr>';
 								echo '<tr><td>First Name</td><td><input type="text" size="50" name="member_fname" value="' . $row['member_fname'] .'"/></td>';
-								echo '<td>City</td><td><input type="text" size="50" name="city" value="' . $row['city'] .'"/></td></tr>';
+								echo '<td>City</td><td><input type="text" size="35" name="city" value="' . $row['city'] .'"/></td></tr>';
 								echo '<tr><td>Last Name</td><td><input type="text" size="50" name="member_lname" value="' . $row['member_lname'] .'"/></td>';
-								echo '<td>Country</td><td><input type="text" size="50" name="country" value="' . $row['country'] .'"/></td></tr>';
+								echo '<td>Country</td><td><input type="text" size="35" name="country" value="' . $row['country'] .'"/></td></tr>';
 								echo '<tr><td>Phone</td><td><input type="text" size="50" name="member_phone" value="' . $row['member_phone'] .'"/></td>';
-								echo '<td>State</td><td><input type="text" size="50" name="state" value="' . $row['state'] .'"/></td></tr>';
+								echo '<td>State</td><td><input type="text" size="35" name="state" value="' . $row['state'] .'"/></td></tr>';
 								echo '<tr><td>Email</td><td><input type="text" size="50" name="member_email" value="' . $row['member_email'] .'"/></td>';
-								echo '<td>Postal</td><td><input type="text" size="50" name="postal" value="' . $row['postal'] .'"/></td></tr>';
+								echo '<td>Postal</td><td><input type="text" size="35" name="postal" value="' . $row['postal'] .'"/></td></tr>';
 								echo '<tr><td>Level</td><td><input type="text" size="50" name="member_level" value="' . $row['member_level'] .'"/></td></tr>';
 							}
 							echo '</table><br />';
 						}
 					?>
 					<input type="submit" name="submit" value="Update" class="btn" />
-					<input type="submit" name="delete" value="Delete This User?" style="float:right"  onclick="return confirm('Are you sure you want to delete this member?');" class="btn" />
+					<input type="submit" name="delete" value="Delete This User?" style="float:right"  onclick="return confirm('Are you sure you want to delete this member?');" class="btn-del" />
 					<input type="hidden" name="submitted" value="TRUE" />
 				</form>
 			</div>

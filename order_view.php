@@ -14,6 +14,9 @@
 	</head>
 	
 	<body class="admin-body">
+		<?php
+			include('./includes/admin-sidebar.html');
+		?>
 		<div class="wrapper">
 		<br>
 			<?php
@@ -77,7 +80,7 @@
 					}
 				}
 				
-				$query = "SELECT r.po_id, r.prod_id, p.prod_name, p.prod_price, r.progress, r.quantity, r.details, m.member_fname
+				$query = "SELECT r.po_id, r.prod_id, p.prod_name, p.prod_price, r.progress, r.quantity, r.details, m.member_fname, m.address, m.city, m.country, m.state, m.postal
 				FROM receipt r
 				JOIN preorder po
 				ON po.po_id = r.po_id
@@ -108,12 +111,23 @@
 						echo '<td>' . $row['quantity'] . '</td>';
 						echo '<td>' . $row['details'] . '</td>';
 						echo '<td>' . $row['member_fname'] . '</td></tr>';
+
+						$address = $row['address'];
+						$city = $row['city'];
+						$postal = $row['postal'];
+						$state = $row['state'];	
+						$country = $row['country'];
+
 					}
 					echo '</table><br>';
+					echo "<span style='font-weight: bold;'>Address:</span> <br>${address}, <br> ${city}, <br> ${postal} ${state}, <br> ${country}";
 					echo '<form action="order_view.php" method="post">';
-					echo '<table class="dashboard-table">';
-					echo '<tr><td>Delete Order</td><td><input type="text" name="po_id" value="' . $poid .'" /></td></tr>';
+					echo '<br><table class="dashboard-table">';
+					echo '<tr>';
+					echo '<tr><td>Delete Order</td><td><input type="text" name="po_id" disabled value="' . $poid .'" /></td></tr>';
 					echo '<tr><td>Delete Receipt Line</td><td><input type="text" name="prod_id" /></td></tr>';
+					// echo '<td>Address:' . $address . ', ' . $city . ', ' . $postal . ' ' . $state . ', ' . $country  . '</td>';
+					echo '</tr>';
 					echo '</table>';
 					echo '<input type="submit" name="delete" value="Delete" class="btn" onclick="return confirm(\'Are you sure you want to Delete?\');"/>';
 					echo '<input type="hidden" name="deleted" value="TRUE" />';

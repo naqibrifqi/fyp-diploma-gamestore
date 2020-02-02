@@ -16,6 +16,7 @@
 				include('includes/header.html');
 				
 				echo '<div class="wrapper">';
+				echo '<div class="content-wrapper">';
 				
 				echo '<div id="cart"><br />
 				<div class="nav">
@@ -89,6 +90,7 @@
 				}
 				
 			?>
+		</div>
 		</div>
 		</div>
 		<div class="push"></div>

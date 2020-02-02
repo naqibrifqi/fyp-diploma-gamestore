@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	session_start();
 	if($_SESSION['admin'] == 0) {
 		header("location:login.php");
 	}
@@ -13,6 +12,9 @@
 	</head>
 	
 	<body class="admin-body">
+		<?php
+			include('./includes/admin-sidebar.html');
+		?>
 		<div class="wrapper">
 			<?php
 				require_once ('config/mysql_connect.php');
@@ -37,7 +39,7 @@
 							
 							if($resultsql){
 								while($row = mysqli_fetch_array($resultsql, MYSQLI_ASSOC)) {
-									echo '<tr bgcolor="#ffffff"><td><a href="member_edit.php?member_id=' . $row['member_id'] . '" style="text-decoration:none;">' . $row['member_id'] . '</a></td>';
+									echo '<tr bgcolor="#ffffff"><td><a style="color: blue; font-weight:bold;" href="member_edit.php?member_id=' . $row['member_id'] . '" style="text-decoration:none;">' . $row['member_id'] . '</a></td>';
 									echo '<td>' . $row['fullname'] . '</td>';
 									echo '<td>' . $row['member_phone'] . '</td>';
 									echo '<td>' . $row['member_email'] . '</td>';

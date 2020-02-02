@@ -20,6 +20,13 @@
 		<?php
 			require_once('./config/mysql_connect.php');
 			include('./includes/header.html');
+			
+			use PHPMailer\PHPMailer\PHPMailer;
+			use PHPMailer\PHPMailer\SMTP;
+
+			require './PHPMailer/src/Exception.php';
+			require './PHPMailer/src/PHPMailer.php';
+			require './PHPMailer/src/SMTP.php';
 		?>
 		<div class="wrapper">
 		<?php
@@ -154,7 +161,41 @@
 											
 					Thank you for shopping at KITAMEN!
 					";
-					mail($row['member_email'],"KITAMEN Confirmation Receipt", $message);
+
+					$mail = new PHPMailer;
+					$mail->isSMTP();
+					$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+					$mail->Host = 'smtp.gmail.com';
+
+					$mail->Port = 587;
+
+					$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+					$mail->SMTPAuth = true;
+					$mail->Username = 'kitamenstudioent@gmail.com';
+					$mail->Password = 'akulapor';
+					$mail->setFrom('kitamenstudioent@gmail.com', 'Kitamen');
+					$mail->addReplyTo('kitamenstudioent@gmail.com', 'Kitamen');
+					$mail->addAddress($row['member_email'], $row['member_name']);
+					$mail->Subject = 'Kitamen Payment';
+					//$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+					$mail->AltBody = $message;
+					$mail->Body = $message;
+					$mail->SMTPDebug = false;
+
+					if (!$mail->send()) {
+						echo 'Mailer Error: '. $mail->ErrorInfo;
+					} else {
+						echo '<script language="javascript">';
+						echo 'alert("Payment Success. We\'ll return to you.")';
+						echo '</script>';
+						//Section 2: IMAP
+						//Uncomment these to save your message in the 'Sent Mail' folder.
+						#if (save_mail($mail)) {
+						#    echo "Message saved!";
+						#}
+					}
+					//mail($row['member_email'],"KITAMEN Confirmation Receipt", $message);
 				}
 			} else {	// If it did not run OK.
 				echo '<div class="wrapper"><h1 id="mainhead">System Error</h1>

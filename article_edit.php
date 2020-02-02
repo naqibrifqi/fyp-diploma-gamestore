@@ -14,8 +14,8 @@
 	<body>
 		<?php
 			require_once('config/mysql_connect.php');
-			include('./includes/admin_header.html');
-			
+			include('./includes/admin-sidebar.html');
+
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
 			}else{
@@ -31,12 +31,14 @@
 				}
 				
 				$querydel = "DELETE FROM news WHERE id = '" . $id . "'";
-				$resultdel = mysqli_query($dbc,$dbc,$querydel);
+				$resultdel = mysqli_query($dbc, $querydel);
 				
 				if($resultdel){
-					echo 'News with ID: ' . $id . ' has been deleted.';
+					header('Location: admin_article.php');
 				} else{
-					echo 'Error deleting occured.';
+					echo '<script language="javascript">';
+					echo 'alert("Error deleting News.")';
+					echo '</script>';
 				}
 			}
 			
@@ -64,7 +66,7 @@
 					}
 					
 					if(!empty($_POST['story'])) {
-						$story = mysqli_real_escape_string($dbc,$_POST['story']);
+						$story = mysqli_real_escape_string($dbc, $_POST['story']);
 					} else {
 						$story= FALSE;
 						$errors[] = '<p><font color="red">-Please recheck the story</font></p>';
@@ -79,7 +81,7 @@
 						$query2 = 'UPDATE news
 						SET headline = "' . $headline .'", name= "' . $authname .'", story= "' . $story . '"
 						WHERE id = "' . $id . '"';
-						$result2 = @mysqli_query($dbc,$dbc,$query2);
+						$result2 = @mysqli_query($dbc,$query2);
 						
 						if(!$result2){
 							echo('Error updating news: ' . mysqli_error($dbc));
@@ -130,7 +132,7 @@
 						$query2 = 'UPDATE news
 						SET headline = "' . $headline .'", name= "' . $authname .'", image= "' . $target . '", story= "' . $story . '"
 						WHERE id = "' . $id . '"';
-						$result2 = @mysqli_query($dbc,$dbc,$query2);
+						$result2 = @mysqli_query($dbc, $query2);
 						
 						if(!$result2){
 							echo('Error updating news: ' . mysqli_error($dbc));
@@ -144,6 +146,9 @@
 			}
 		?>
 		<div class="wrapper">
+			<?php
+				include('./includes/admin_header.html');
+			?>
 			<div class="article_holder">
 				<form action="article_edit.php" method="post" enctype="multipart/form-data">
 					<?php
@@ -164,7 +169,7 @@
 								echo '<tr><td>Headline</td><td><input type="text" size="50" name="headline" value="' . $row['headline'] .'"/></td></tr>';
 								echo '<tr><td>Name of Author </td><td><input type="text" size="50" name="authname" value="' . $row['name'] .'"/></td></tr>';
 								echo '<tr><td>Image</td><td><input type="file" name="uploaded"</td></tr>';
-								echo '<tr><td>Story</td><td><textarea rows="20" cols="120" name="story">' . $row['story'] . '</textarea></td></tr>';
+								echo '<tr><td>Story</td><td><textarea rows="20" cols="100" name="story">' . $row['story'] . '</textarea></td></tr>';
 								
 								echo '<h1>' . $row['headline'] . '</h1>';
 								echo '<font size="2">' . $row['name'] . ' </font>  <font size="1">' . $row['timestamp'] . '</font><br /><br />';
@@ -175,7 +180,7 @@
 						}
 					?>
 					<input type="submit" name="submit" value="Update" class="btn" />
-					<input type="submit" name="delete" value="Delete This Post?" style="float:right" onclick="return confirm('Are you sure you want to Delete?');" class="btn" />
+					<input type="submit" name="delete" value="Delete This Post?" style="float:right" onclick="return confirm('Are you sure you want to Delete?');" class="btn-del" />
 					<input type="hidden" name="submitted" value="TRUE" />
 				</form>
 			</div>

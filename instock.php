@@ -18,29 +18,30 @@
 		?>
 		
 		<div class ="wrapper">
-		
-			<?php
-				$query = "SELECT prod_id, prod_img, prod_name, prod_price FROM products WHERE prod_type = 'Video Game' 
-				AND prod_avail = 'In Stock' AND stock > 0 ORDER BY date_added desc";
-				$result = @mysqli_query($dbc, $query);
-					
-				if($result) {
-					echo '<h1 style="font-family: Verdana; text-align:Center">In Stock Items</h1><a href="rental_solution.php" style="float:left;">< Rental</a><a href="product_catalogue.php" style="float:right;">Pre Order ></a><hr>';
-					echo '<table align="center" cellspacing="0" cellpadding="5" border="1px"><tr>';
+			<div class="content-wrapper">
+				<?php
+					$query = "SELECT prod_id, prod_img, prod_name, prod_price FROM products WHERE prod_type = 'Video Game' 
+					AND prod_avail = 'In Stock' AND stock > 0 ORDER BY date_added desc";
+					$result = @mysqli_query($dbc, $query);
 						
-					for($i=0, $max = 4; $row = mysqli_fetch_array($result, MYSQLI_NUM);) {
-						if($i++ % $max == 0)
-								echo '<tr>';
+					if($result) {
+						echo '<h1 style="font-family: Verdana; text-align:Center">In Stock Items</h1><a href="rental_solution.php" style="float:left;">< Rental</a><a href="product_catalogue.php" style="float:right;">Pre Order ></a><hr>';
+						echo '<table align="center" cellspacing="0" cellpadding="5"><tr>';
 							
-						echo '<td><center><a href="product_page.php?prod_id=' . $row[0] .'"><img src="' . $row[1] . '" width="250px" height="350px"/><br />' . $row[2] . '<br />RM ' . number_format($row[3], 2) . '</a></center></td>';
-						$_GET[0] = $row[0];
-						
-						if ($i % $max == 0)
-							echo '</tr>';
+						for($i=0, $max = 4; $row = mysqli_fetch_array($result, MYSQLI_NUM);) {
+							if($i++ % $max == 0)
+									echo '<tr>';
+								
+							echo '<td><center><a href="product_page.php?prod_id=' . $row[0] .'"><img src="' . $row[1] . '" width="220px" height="320px"/><br />' . $row[2] . '<br />RM ' . number_format($row[3], 2) . '</a></center></td>';
+							$_GET[0] = $row[0];
+							
+							if ($i % $max == 0)
+								echo '</tr>';
+						}
+						echo '</table><br /></div>';
 					}
-					echo '</table><br /></div>';
-				}
-			?>
+				?>
+			</div>
 		<div class="push"></div>
 		<?php
 			include ('./includes/footer.html');

@@ -30,7 +30,9 @@
 				$po_id = FALSE;
 			}			
 			
-			echo '<br><div class="wrapper">';
+			echo '<div class="wrapper">';
+			echo '<div class="content-wrapper">';
+			echo '<h2>Order</h2>';
 			echo '<div class="nav">
 						<a href = "myaccount_edit.php">My Account</a> > <a href="order_edit.php?po_id=' . $pid .'&prod_id=' . $po_id .'">Order Item</a>
 					</div><hr>';
@@ -126,6 +128,7 @@
 				}
 			}
 			?>
+			</div>
 		</div>
 	</body>
 </html>
