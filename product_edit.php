@@ -8,7 +8,7 @@
 	<body>
 		<?php
 			require_once('config/mysql_connect.php');
-			include('./includes/admin_header.html');
+			include('./includes/admin-sidebar.html');
 			
 			if(isset($_GET['prod_id'])){
 				$pid = $_GET['prod_id'];
@@ -25,12 +25,12 @@
 				}
 				
 				$querydel = "DELETE FROM products WHERE prod_id = '" . $pid . "'";
-				$resultdel = mysqli_query($dbc,$dbc,$querydel);
+				$resultdel = mysqli_query($dbc,$querydel);
 				
 				if($resultdel){
-					echo 'Product with ID: ' . $pid . ' has been deleted.';
+					echo '<div class="wrapper">Product with ID: ' . $pid . ' has been deleted.</div>';
 				} else{
-					echo 'Error deleting occured. ' . mysqli_error($dbc);
+					echo '<div class="wrapper">Error deleting occured. ' . mysqli_error($dbc) . '</div>';
 				}
 			}
 			
@@ -86,15 +86,16 @@
 						$query2 = 'UPDATE products
 						SET prod_name = "' . $pn .'", prod_name= "' . $pn .'", prod_desc= "' . $pd . '", prod_type="' . $pt . '", prod_avail="' . $pa . '", stock="' . $s . '"
 						WHERE prod_id = "' . $pid . '"';
-						$result2 = @mysqli_query($dbc,$dbc,$query2);
+						$result2 = @mysqli_query($dbc,$query2);
 						
 						if(!$result2){
 							echo('Error updating product: ' . mysqli_error($dbc));
 							exit();
 						}else{
-							echo('<br />Success Updating!<br><a href="add_product.php">Click here</a> to add more product.<br><a href="add_product.php">Click 
-							here</a> to edit products.<br><a href="admindash.php">Click here</a> to return to the main admin page.');
-							exit();							
+							// echo('<div class="wrapper"><br />Success Updating!<br><a href="add_product.php">Click here</a> to add more product.<br><a href="add_product.php">Click 
+							// here</a> to edit products.<br><a href="admindash.php">Click here</a> to return to the main admin page.</div>');
+							// exit();
+							header('add_product.php');
 						}
 					} else{
 						
@@ -136,19 +137,20 @@
 						$query2 = 'UPDATE products
 						SET prod_id = "' . $pid .'", prod_name= "' . $pn .'", prod_image= "' . $path . '", prod_desc= "' . $pd . '", prod_type="' . $pt . '", prod_avail="' . $pa . '"
 						WHERE prod_id = "' . $pid . '"';
-						$result2 = @mysqli_query($dbc,$dbc,$query2);
+						$result2 = @mysqli_query($dbc,$query2);
 						
 						if(!$result2){
 							echo('Error updating product: ' . mysqli_error($dbc));
 						}else{
-							echo('<br />Success Updating!<br><a href="add_product.php">Click here</a> to add more product.<br><a href="add_product.php">Click 
-							here</a> to edit news.<br><a href="admindash.php">Click here</a> to return to the main admin page.');
+							// echo('<br />Success Updating!<br><a href="add_product.php">Click here</a> to add more product.<br><a href="add_product.php">Click 
+							// here</a> to edit news.<br><a href="admindash.php">Click here</a> to return to the main admin page.');
 							header('admin_article.php');
 						}
 					}
 			}
 		?>
 		<div class="wrapper">
+			<?php include('./includes/admin_header.html'); ?>
 			<div class="article_holder">
 				<form action="product_edit.php" method="post" enctype="multipart/form-data">
 					<?php
@@ -171,9 +173,9 @@
 								echo '<tr><td>Availability</td><td><input type="text" size="50" name="prod_avail" value="' . $row['prod_avail'] .'"/></td></tr>';
 								echo '<tr><td>Stock</td><td><input type="text" size="50" name="stock" value="' . $row['stock'] .'"/></td></tr>';
 								echo '<tr><td>Image</td><td><input type="file" name="uploaded"</td></tr>';
-								echo '<tr><td>Description</td><td><textarea rows="20" cols="120" name="prod_desc">' . $row['prod_desc'] . '</textarea></td></tr>';
+								echo '<tr><td>Description</td><td><textarea rows="20" cols="100" name="prod_desc">' . $row['prod_desc'] . '</textarea></td></tr>';
 								
-								echo '<div class="wrapper_product">
+								echo '<h1>' . $row['prod_name'] . '</h1>
 								<br />
 									<table>
 										<tr>
@@ -206,15 +208,15 @@
 												</table>
 											</td>
 										</tr>
-									</table>
-								</div>';
+									</table>';
 							}
 							echo '</table>';
 						}
 					?>
-					<center><input type="submit" name="submit" value="Update" class="btn" />
-					<input type="submit" name="delete" class="btn" value="Delete This Item?"  onclick="return confirm('Are you sure you want to delete this item?');" />
+					<center><input type="submit" name="submit" value="Update" class="btn" onclick="return confirm('Are you sure you want to update this item?');"/>
+					<input type="submit" name="delete" class="btn-del" value="Delete This Item?"  onclick="return confirm('Are you sure you want to delete this item?');" />
 					<input type="hidden" name="submitted" value="TRUE" /></center><br /><br />
+					</div>
 				</form>
 			</div>
 		</div>

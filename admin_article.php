@@ -13,6 +13,9 @@ session_start();
 	</head>
 	
 	<body class="admin-body">
+		<?php
+			include('./includes/admin-sidebar.html');
+		?>
 		<div class="wrapper">
 			<?php
 				require_once ('config/mysql_connect.php');
@@ -142,8 +145,8 @@ session_start();
 			</div>
 			
 			<hr>
-			<h2>Update Post</h2>
 			<div class="article_holder">
+				<h2>Update Post</h2><br>
 				<form action="admin_article.php" method="post">
 					<table>
 						<tr>
@@ -159,7 +162,7 @@ session_start();
 							if($resultsql){
 								while($row = mysqli_fetch_array($resultsql, MYSQLI_ASSOC)) {
 									echo '<tr><td>' . $row['id'] . '</td>';
-									echo '<td><a href="article_edit.php?id=' . $row['id'] . '" style="text-decoration:none;">' . $row['headline'] . '</a></td>';
+									echo '<td><a style="color:#727cf5; font-weight:bold;" href="article_edit.php?id=' . $row['id'] . '" style="text-decoration:none;">' . $row['headline'] . '</a></td>';
 									echo '<td>' . substr($row['story'], 0, 150) . '...</td>';
 									echo '<td>' . $row['name'] . '</td></tr>';
 								}

@@ -36,8 +36,15 @@
 										<td>
 											<h2>' . $row['prod_name'] . '</h2>
 										</td>
-									</tr>
-									<tr>
+									</tr>'; 
+									if($row['prod_avail'] == "Pre Order"){
+										echo '<tr>
+												<td>
+													<h4 style="color:red"> Note that this item is Pre-Order</h4>
+												</td>
+											</tr>';
+									}
+									echo '<tr>
 										<td>
 											<h1>RM ' . number_format($row['prod_price'], 2) . '</h1>
 										</td> 
@@ -49,10 +56,10 @@
 									</tr>
 									<tr>
 										<td>
-												<button type="submit" class="cart-button" onclick="return confirm(\'Add this item to cart?\');" name="submit"><span>
-													<img src="images/cart.png" width="50px" height="50px"/>
-													Add To Cart
-												</span></button>
+											<button type="submit" class="cart-button" onclick="return confirm(\'Add this item to cart?\');" name="submit"><span>
+												<img src="images/cart.png" width="50px" height="50px"/>
+												Add To Cart
+											</span></button>
 										</td> 
 									</tr>';
 									if($row['stock'] <= 0){
@@ -64,9 +71,9 @@
 										$_SESSION['type'] = "In Stock";
 									}
 									echo'<tr style="width:20%">
-										<td>
+										<td><span class="prod_desc">
 											' . $row['prod_desc'] . '
-										</td> 
+										</span></td> 
 									</tr>
 								</table>
 							</td>
@@ -77,7 +84,13 @@
 				$_SESSION['prod_price'] = $row['prod_price'];
 				$_SESSION['prod_avail'] = $row['prod_avail'];
 				}
+			}else{
+				echo mysqli_error($result);
 			}
+			echo '<br />';
+			include('./prod_suggestion.php');
+			echo '<br /><br />';
+			include('./includes/footer.html');
 		?>
 	</body>
 </html>

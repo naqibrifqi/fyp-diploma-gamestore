@@ -14,10 +14,20 @@
 	</head>
 	
 	<body class="admin-body">
+		<?php
+			include('./includes/admin-sidebar.html');
+		?>
 		<div class="wrapper">
 			<?php
 				require_once ('config/mysql_connect.php');
 				include('./includes/admin_header.html');
+				
+				use PHPMailer\PHPMailer\PHPMailer;
+				use PHPMailer\PHPMailer\SMTP;
+
+				require './PHPMailer/src/Exception.php';
+				require './PHPMailer/src/PHPMailer.php';
+				require './PHPMailer/src/SMTP.php';
 			?>
 			
 			<h1>Admin Dashboard</h1>
@@ -32,7 +42,7 @@
 					SET progress = 'Shipped'
 					WHERE po_id = '" . $_GET['po_id'] . "' && prod_id = '" . $_GET['prod_id'] . "'";
 					
-					$res = mysqli_query($dbc,$dbc,$sql);
+					$res = mysqli_query($dbc, $sql);
 					
 					if($res){
 						$mailsql = "SELECT CONCAT(m.member_fname,' ',m.member_lname) AS member_name, m.member_email 
@@ -42,7 +52,7 @@
 						JOIN member m
 						ON m.member_id = p.member_id
 						WHERE r.po_id='" . $_GET['po_id'] . "'";
-						$resultmail = mysqli_query($dbc,$dbc,$mailsql);
+						$resultmail = mysqli_query($dbc,$mailsql);
 						if($resultmail){
 							$row = mysqli_fetch_array($resultmail);
 							$message = "
@@ -60,11 +70,46 @@ Thank you for your purchase and we look forward to doing business with you again
 									
 Thank you for shopping at KITAMEN!
 ";
-							mail($row['member_email'],"KITAMEN Shipping Notification", $message);
+							$mail = new PHPMailer;
+							$mail->isSMTP();
+							$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+
+							$mail->Host = 'smtp.gmail.com';
+
+							$mail->Port = 587;
+
+							$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+							$mail->SMTPAuth = true;
+							$mail->Username = 'kitamenstudioent@gmail.com';
+							$mail->Password = 'akulapor';
+							$mail->setFrom('kitamenstudioent@gmail.com', 'Kitamen');
+							$mail->addReplyTo('kitamenstudioent@gmail.com', 'Kitamen');
+							$mail->addAddress($row['member_email'], $row['member_name']);
+							$mail->Subject = 'Kitamen Receipt';
+							//$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+							$mail->AltBody = $message;
+							$mail->Body = $message;
+							$mail->SMTPDebug = false;
+
+							if (!$mail->send()) {
+								echo 'Mailer Error: '. $mail->ErrorInfo;
+							} else {
+								echo '<script language="javascript">';
+								echo 'alert("Notification E-mail sent!")';
+								echo '</script>';
+								//Section 2: IMAP
+								//Uncomment these to save your message in the 'Sent Mail' folder.
+								#if (save_mail($mail)) {
+								#    echo "Message saved!";
+								#}
+							}
+
+
+							//mail($row['member_email'],"KITAMEN Shipping Notification", $message);
 						}else{
 							echo mysqli_error($dbc);
 						}
-						header('admindash.php');
+						//header('admindash.php');
 					}
 				} else if(isset($_GET['po_id']) && $_GET['progress'] == "Shipped"){
 					$sql = "UPDATE receipt
@@ -90,31 +135,35 @@ Thank you for shopping at KITAMEN!
 				$result = @mysqli_query($dbc, $query);
 				
 				if($result) {
-					echo '<center><table class="dashboard-table table-alpha" ><caption>All Reservations</caption><tr class="table-alpha-header">';
+					echo '<table class="dashboard-table table-alpha" ><caption>All Reservations</caption><tr class="table-alpha-header">';
 					echo '<th>Order ID</th>';
 					echo '<th>Product Name</th>';
 					echo '<th>Delivery Method</th>';
-					echo '<th>Payment Proof</th>';
+					// echo '<th>Payment Proof</th>';
 					echo'<th>Date Ordered</th>';
 					echo'<th>Progress</th>';
-					echo'<th>Member ID</th>';
-					echo'<th>Availability</th>';
-					echo'<th>Total Payment</th>';
-					echo'<th>Details</th></tr>';
+					// echo'<th>Member ID</th>';
+					// echo'<th>Availability</th>';
+					echo'<th>Total Payment</th></tr>';
+					// echo'<th>Details</th></tr>';
 					
 					while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-						echo '<tr bgcolor="#ffffff"><td><a href="order_view.php?po_id=' . $row['po_id'] . '">' . $row['po_id'] . '</a></td>';
+						echo '<tr bgcolor="#ffffff"><td><a style="color:#727cf5; font-weight:bold;" href="order_view.php?po_id=' . $row['po_id'] . '">' . $row['po_id'] . '</a></td>';
 						echo '<td>' . $row['prod_name'] . '</td>';
 						echo '<td>' . $row['po_delivery_method'] . '</td>';
-						echo '<td>' . $row['po_payment_proof'] . '</td>';
-						echo '<td>' . $row['po_date'] . '</td>';
-						echo '<td><a onclick=" return confirm(\'Change the state?\');" href="admindash.php?po_id=' . $row['po_id'] . '&progress=' . $row['progress'] . '&prod_id=' . $row['prod_id'] . '">' . $row['progress'] . '</a></td>';
-						echo '<td>' . $row['member_id'] . '</td>';
-						echo '<td>' . $row['prod_avail'] . '</td>';
-						echo '<td>RM ' . number_format($row['total_payment'], 2) . '</td>';
-						echo '<td>' . $row['details'] . '</td></tr>';
+						// echo '<td>' . $row['po_payment_proof'] . '</td>';
+						$date = date_create_from_format('Y-m-d H:i:s', $row['po_date']);
+						echo '<td>' . $date->format('d M Y') . '</td>';
+						if($row['progress'] == "Shipped")
+							echo '<td><span style="color:#b3b6dc; font-weight:bold;">' . $row['progress'] . '</span></td>';
+						else if($row['progress'] == "Not Shipped")
+							echo '<td><a style="color:#727cf5; font-weight:bold;" onclick=" return confirm(\'Complete shipping process for this item?\');" href="admindash.php?po_id=' . $row['po_id'] . '&progress=' . $row['progress'] . '&prod_id=' . $row['prod_id'] . '">' . $row['progress'] . '</a></td>';
+						// echo '<td>' . $row['member_id'] . '</td>';
+						// echo '<td>' . $row['prod_avail'] . '</td>';
+						echo '<td>RM ' . number_format($row['total_payment'], 2) . '</td></tr>';
+						// echo '<td>' . $row['details'] . '</td></tr>';
 					}
-					echo '</table></center>';
+					echo '</table>';
 				} else {	// If it did not run OK.
 					echo '<h1 id="mainhead">System Error</h1>
 					<p class="error">The data cannot be entered due to a system error. </p>';

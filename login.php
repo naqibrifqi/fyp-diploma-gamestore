@@ -153,14 +153,14 @@
 					<center><form action="login.php" method="post" id="loginform" role="form">
 						<div class="form-group has-feedback">
 							Login:<br /><br />
-							<input name="member_id" type="text" id="username" class="form-control input-lg" 
+							<input name="member_id" type="text" id="username" class="form-control input-lg login-user" onfocus=""
 							style="background-image: url(images/user_id.png); background-size: 30px 30px; background-position: right center; background-repeat: no-repeat;"
 							placeholder="Username" value= "<?php if(isset($_POST['username'])) echo $_POST['username']; ?>">
 						</div>
 						<div class="form-group has-feedback">
-							<td><input name="password" type="password" 
+							<td><input name="password" type="password" onfocus=""
 							style="background-image: url(images/key.png); background-size: 30px 30px; background-position: right center; background-repeat: no-repeat;"
-							placeholder="Password" class="form-control input-lg" id="password"></td>
+							placeholder="Password" class="form-control input-lg pass-user" id="password"></td>
 						</div>
 						
 						<input type="submit" name="Submit" class="btn stronghold-btn-default pull-right" value="Login">
@@ -210,5 +210,6 @@
 		echo'<div class="push"></div>';
 		include ('./includes/footer.html');
 	?>
+	<script src="./js/loginfunc.js"></script>
 	</body>
 </html>

@@ -16,8 +16,9 @@
 		?>
 		
 		<div class ="wrapper">
-			<?php
-			
+			<div class="content-wrapper">
+				<?php
+				
 				if(isset($_GET['id'])){
 					$id = $_GET['id'];
 				}else{
@@ -41,7 +42,8 @@
 					echo '<p>' . mysqli_error($dbc) . '<br /><br /></p>';
 					exit();
 				}
-			?>
+				?>
+			</div>
 		</div>
 		
 		<div class="push"></div>

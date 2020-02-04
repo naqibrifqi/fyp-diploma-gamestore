@@ -17,24 +17,27 @@
 			include ('./includes/header.html');
 		?>
 		<div class="wrapper">
-			<h2>CONTACT US</h2>
-			<hr>
-			<p>Lets Talk or Come and Play</p>
-			<p>also visit us at</p>
-			<p><a href="http://www.facebook.com/kitamen">Facebook</a></p>
-			<p><a href="http://www.instagram.com/kitamen">Instagram</a></p>
-			<p>Gaming Studio Inquiry, Buy and Sell Video Games</p>
-			<p>Contact Gon 017-6814931</p>
-			<p>Rentals and Technical Inquiry</p>
-			<p>Contact</p>
-			<p>Man 016-4446716</p>
-			<br />
-			<p>email: kitamenstudio@gmail.com</p>
-			<br>
-			<p><b>PAYMENT</b></p>
-			<p>CIMB: KITAMEN Studios Bhd 7049173313</p>
-			<p>Maybank: KITAMEN Studios Bhd 1064329058865</p>
-			<p>Bank Islam: KITAMEN Studios Bhd 10562883544219</p>
+			<div class="content-wrapper">
+				<h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">CONTACT US</h1>
+				<hr>
+				<p>Lets Talk or Come and Play</p>
+				<p>also visit us at</p>
+				<p><a href="http://www.facebook.com/kitamen">Facebook</a></p>
+				<p><a href="http://www.instagram.com/kitamen">Instagram</a></p>
+				<p>Gaming Studio Inquiry, Buy and Sell Video Games</p>
+				<p>Contact Gon 017-6814931</p>
+				<p>Rentals and Technical Inquiry</p>
+				<p>Contact</p>
+				<p>Man 016-4446716</p>
+				<br />
+				<p>email: kitamenstudio@gmail.com</p>
+				<br>
+				<p><b>PAYMENT</b></p>
+				<p>CIMB: KITAMEN Studios Bhd 7049173313</p>
+				<p>Maybank: KITAMEN Studios Bhd 1064329058865</p>
+				<p>Bank Islam: KITAMEN Studios Bhd 10562883544219</p>
+				<hr>
+			</div>
 		</div>
 		
 		<div class="push"></div>
